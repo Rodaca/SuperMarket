@@ -67,8 +67,8 @@
 
         public function delete(){
             try {
-                $stm=$this->dbCnx->prepare("DELETE FROM facturas WHERE categoriaId=?");
-                $stm->execute([$this->categoriaId]);
+                $stm=$this->dbCnx->prepare("DELETE FROM facturas WHERE $facturaId=?");
+                $stm->execute([$this->$facturaId]);
                 return $stm->fetchAll();
             } catch (Exception $e) {
                 return $e->getMessage();
@@ -78,18 +78,17 @@
 
         public function selectOne(){
             try {
-                $stm=$this->dbCnx->prepare("SELECT * FROM facturas WHERE categoriaId=?");
-                $stm->execute([$this->categoriaId]);
+                $stm=$this->dbCnx->prepare("SELECT * FROM facturas WHERE $facturaId=?");
+                $stm->execute([$this->$facturaId]);
                 return $stm->fetchAll();
             } catch (Exception $e) {
                 return $e->getMessage();
             }
         }
-
         public function update(){
             try {
-                $stm=$this->dbCnx->prepare("UPDATE categorias SET nombre=?,descripcion=?,imagen=? WHERE categoriaId = ?");
-                $stm->execute([$this->nombre,$this->descripcion,$this->imagen,$this->categoriaId]); 
+                $stm=$this->dbCnx->prepare("UPDATE facturas SET empleadoId=?,clienteId=?,fecha=? WHERE $facturaId = ?");
+                $stm->execute([$this->empleadoId,$this->clienteId,$this->fecha,$this->facturaId]); 
             } catch (Exception $e) {
                 return $e->getMessage();
             }
