@@ -12,7 +12,7 @@
     $empleados= new Empleado();
     $cliente =new Cliente();
     $data= new Factura();
-    $all= $data ->selectAll();
+    $all= $data ->selectAllId();
     $clAll= $cliente ->selectAll();
     $emAll= $empleados ->selectAll();
 ?>
@@ -76,7 +76,10 @@
           <i class="bi bi-people"></i>
           <h3 style="margin: 0px;font-weight: 800;">Facturas</h3>
         </a>
-       
+        <a href="../Productos/productos.php" style="display: flex;gap:1px;">
+          <i class="bi bi-people"></i>
+          <h3 style="margin: 0px;font-weight: 800;">Proveedores</h3>
+        </a>
 
 
       </div>
@@ -84,7 +87,7 @@
 
     <div class="parte-media">
       <div style="display: flex; justify-content: space-between;">
-        <h2>Categorias</h2>
+        <h2>Facturas</h2>
         <button class="btn-m" data-bs-toggle="modal" data-bs-target="#registrarEstudiantes"><i class="bi bi-person-add " style="color: rgb(255, 255, 255);" ></i></button>
       </div>
       <div class="menuTabla contenedor2">
@@ -107,8 +110,8 @@
             ?>
             <tr>
               <td><?php echo $val['facturaId']?> </td>
-              <td><?php echo $val['empleadoId']?> </td>
-              <td><?php echo $val['clienteId']?> </td>
+              <td><?php echo $val['nombre']?> </td>
+              <td><?php echo $val['compañia']?> </td>
               <td><?php echo $val['fecha']?> </td>
               <td>
                   <a class="btn btn-danger" href="borrar.php?facturaId=<?=$val['facturaId']?>&req=delete">Borrar</a>

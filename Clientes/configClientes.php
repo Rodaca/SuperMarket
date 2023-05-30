@@ -73,15 +73,7 @@
                 return $e->getMessage();
             }
         }
-        public function selectAllId(){
-            try {
-                $stm= $this->dbCnx->prepare("SELECT f.facturaId, e.nombre AS nombre_empleado, c.compañia, f.fecha FROM facturas f JOIN empleados e ON f.empleadoId = e.empleadoId JOIN clientes c ON f.clienteId = c.clienteId;");
-                $stm->execute();
-                return $stm->fetchAll();
-            } catch (Exception $e) {
-                return $e->getMessage();
-            }
-        }
+        
 
         public function delete(){
             try {
