@@ -1,34 +1,37 @@
 <?php
-        ini_set("display_errors", 1);
+      ini_set("display_errors", 1);
+      ini_set("display_startup_errors", 1);
+      error_reporting(E_ALL);
 
-        ini_set("display_startup_errors", 1);
+    require_once('configProductos.php');
+    $data= new Producto();
+    $all= $data ->selectAllId();
+    require_once('../Categorias/configCategorias.php');
+    require_once('../Proveedores/configProveedores.php');
+    $categoria= new Categoria();
+    $proveedores =new Proveedor();
+    
+    $caAll= $categoria ->selectAll();
+    $prAll= $proveedores ->selectAll();
         
-        error_reporting(E_ALL);
 
-        require_once('configFacturas.php');
-        require_once('../Clientes/configClientes.php');
-        require_once('../Empleados/configEmpleados.php');
-        $empleados= new Empleado();
-        $cliente =new Cliente();
-        $data= new Factura();
-        $all= $data ->selectAllId();
-        $clAll= $cliente ->selectAll();
-        $emAll= $empleados ->selectAll();
-
-    $id= $_GET['facturaId'];
-    $data->setFacturaId($id);
+    $id= $_GET['productoId'];
+    $data->setProductoId($id);
 
     $record = $data->selectOne();
 
     $values = $record[0];
 
     if(isset($_POST['editar'])){
-        $data-> setEmpleadoId($_POST['empleadoId']);
-        $data-> setClienteId($_POST['clienteId']);
-        $data-> setFecha($_POST['fecha']);
+        $data->setCategoriaId($_POST['categoriaId']);
+        $data->setPrecioUnitario($_POST['precioUnitario']);
+        $data->setStock($_POST['stock']);
+        $data->setUnidadesPedidas($_POST['unidadesPedidas']);
+        $data->setProveedorId($_POST['proveedorId']);
+        $data->setNombreProducto($_POST['nombre']);
+        $data->setDescontinuado($_POST['descontinuado']);
         $data-> update();
-
-        echo "<script>document.location='facturas.php'</script>";
+        echo "<script>document.location='productos.php';</script>";
 
     }
 
@@ -82,62 +85,91 @@
         <h2 class="m-2">Factura a editar</h2>
       <div class="menuTabla contenedor2">
       <div class="modal-body" style="background-color: rgb(231, 253, 246);">
+
             <form class="col d-flex flex-wrap" action="" method="post">
               <div class="mb-1 col-12">
-                <label for="clienteId" class="form-label">Cliente</label>
-                <select 
-                  id="clienteId"
-                  name="clienteId"
-                  class="form-select" 
-                  >
-                  <?php echo $values['clienteId']?>
-                  
-                  <?php
-                    foreach($clAll as $Key=> $val ){?>
-                  <option value="<?php echo $val['clienteId']?>" 
-                  <?php if($val['clienteId']==$values['clienteId']){echo "selected";}?>
-                  ><?php echo $val['compañia']?></option>
-                  <?php }; ?>
-                </select>
-
+                <label for="nombre" class="form-label">Nombre</label>
+                <input 
+                  type="text"
+                  id="nombre"
+                  name="nombre"
+                  class="form-control" 
+                  value="<?php echo $values['nombreProducto'];?>"
+                />
               </div>
-
               <div class="mb-1 col-12">
-                <label for="empleadoId" class="form-label">Empleados</label>
+                <label for="categoriaId" class="form-label">Categoria</label>
                 <select 
-                  id="empleadoId"
-                  name="empleadoId"
+                  id="categoriaId"
+                  name="categoriaId"
                   class="form-select" >
                   <?php
-                    foreach($emAll as $Key=> $val ){?>
-                  <option value="<?php echo $val['empleadoId']?>"
-                  <?php if($val['empleadoId']==$values['empleadoId']){echo "selected";}?>
+                    foreach($caAll as $Key=> $val ){?>
+                  <option value="<?php echo $val['categoriaId'];?>"
+                  <?php if($val['categoriaId']==$values['categoriaId']){echo "selected";}?>
                   ><?php echo $val['nombre']?></option>
                   <?php }; ?>
                 </select>
               </div>
-
-              <div class="mb-1 col-12">
-                <label for="logros" class="form-label">Fecha</label>
+              <div class="mb-1 col-6">
+                <label for="unidadesPedidas" class="form-label">Cantidad</label>
                 <input 
-                  type="Date"
-                  id="fecha"
-                  name="fecha"
-                  class="form-control"  
-                  value="<?php echo $values['fecha']?>"
-                 
+                  type="number"
+                  id="unidadesPedidas"
+                  name="unidadesPedidas"
+                  class="form-control"
+                  value="<?php echo $values['unidadesPedidas'];?>"
                 />
               </div>
-
-              
+              <div class="mb-1 col-6">
+                <label for="precioUnitario" class="form-label">Precio unitario</label>
+                <input 
+                  type="number"
+                  id="precioUnitario"
+                  name="precioUnitario"
+                  class="form-control"  
+                  value="<?php echo $values['precioUnitario'];?>"
+                />
+              </div>
+              <div class="mb-1 col-6">
+                <label for="stock" class="form-label">Stock</label>
+                <input 
+                  type="number"
+                  id="stock"
+                  name="stock"
+                  class="form-control"  
+                  value="<?php echo $values['stock'];?>"
+                />
+              </div>
+              <div class="mb-1 col-6">
+                <label for="descontinuado" class="form-label">Estado</label>
+                <input 
+                  type="text"
+                  id="descontinuado"
+                  name="descontinuado"
+                  class="form-control"  
+                  value="<?php echo $values['descontinuado'];?>"
+                />
+              </div>
+              <div class="mb-1 col-12">
+                <label for="proveedorId" class="form-label">proveedores</label>
+                <select 
+                  id="proveedorId"
+                  name="proveedorId"
+                  class="form-select" >
+                  <?php
+                    foreach($prAll as $Key=> $val ){?>
+                  <option value="<?php echo $val['proveedorId']?>"
+                  <?php if($val['proveedorId']==$values['proveedorId']){echo "selected";}?>
+                  ><?php echo $val['nombre']?></option>
+                  <?php }; ?>
+                </select>
+              </div>
               <div class=" col-12 m-2">
-                <input type="submit" class="btn btn-primary" value="editar" name="editar"/>
+                <input type="submit" class="btn btn-primary" value="editar" name="editar"/>              
               </div>
             </form>  
-         </div>       
-        </div>
-      
-      </div>
+         </div> 
     </div>
 
     <div class="parte-derecho " id="detalles">

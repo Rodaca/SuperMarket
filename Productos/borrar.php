@@ -1,13 +1,13 @@
 <?php
-    require_once("configFacturas.php");
+    require_once("configProductos.php");
 
-    $record = new Factura;
+    $record = new Producto();
 
-    if(isset($_GET['facturaId']) && isset($_GET['req'])){
+    if(isset($_GET['productoId']) && isset($_GET['req'])){
         if($_GET['req']== "delete"){
-            $record -> setfacturaId($_GET['facturaId']);
+            $record -> setProductoId($_GET['productoId']);
             $record -> delete();
-            echo "<script>alert('Datos borrados exitosamente'); document.location='facturas.php'</script>";
+            echo "<script> document.location='productos.php'</script>";
         }
     }
 

@@ -81,7 +81,7 @@
         </a>
         <a href="../Productos/productos.php" style="display: flex;gap:1px;">
           <i class="bi bi-people"></i>
-          <h3 style="margin: 0px;font-weight: 800;">Proveedores</h3>
+          <h3 style="margin: 0px;font-weight: 800;">Productos</h3>
         </a>
 
 
@@ -124,8 +124,8 @@
               <td><?php echo $val['proveedorNombre']?> </td>
               <td><?php echo $val['descontinuado']?> </td>
               <td>
-                  <a class="btn btn-danger" href="borrar.php?facturaId=<?=$val['productoId']?>&req=delete">Borrar</a>
-                  <a class="btn btn-warning" href="actualizar.php?facturaId=<?=$val['productoId']?>">Actualizar</a>
+                  <a class="btn btn-danger" href="borrar.php?productoId=<?=$val['productoId']?>&req=delete">Borrar</a>
+                  <a class="btn btn-warning" href="actualizar.php?productoId=<?=$val['productoId']?>">Actualizar</a>
               </td>
             </tr>
             <?php }; ?>

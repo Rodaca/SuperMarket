@@ -21,7 +21,7 @@
         $producto->insertData();
 
 
-        echo"<script> document.location='proveedores.php'</script>";
+        echo"<script> document.location='productos.php'</script>";
 
     }
 

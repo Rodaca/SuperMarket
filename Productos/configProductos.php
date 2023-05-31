@@ -69,8 +69,8 @@
 
         public function delete(){
             try {
-                $stm=$this->dbCnx->prepare("DELETE FROM productos WHERE facturaId=?");
-                $stm->execute([$this->facturaId]);
+                $stm=$this->dbCnx->prepare("DELETE FROM productos WHERE productoId=?");
+                $stm->execute([$this->productoId]);
                 return $stm->fetchAll();
             } catch (Exception $e) {
                 return $e->getMessage();
@@ -81,7 +81,7 @@
         public function selectOne(){
             try {
                 $stm=$this->dbCnx->prepare("SELECT * FROM productos WHERE productoId=?");
-                $stm->execute([$this->facturaId]);
+                $stm->execute([$this->productoId]);
                 return $stm->fetchAll();
             } catch (Exception $e) {
                 return $e->getMessage();
@@ -90,7 +90,7 @@
         public function update(){
             try {
                 $stm=$this->dbCnx->prepare("UPDATE productos SET categoriaId=?,precioUnitario=?,stock=?,unidadesPedidas=?,proveedorId=?,nombreProducto=?,descontinuado=? WHERE productoId = ?");
-                $stm->execute([$this->categoriaId,$this->precioUnitario,$this->stock,$this->unidadesPedidas,$this->proveedorId,$this->nombreProducto,$this->descontinuado,$this->$productoId]); 
+                $stm->execute([$this->categoriaId,$this->precioUnitario,$this->stock,$this->unidadesPedidas,$this->proveedorId,$this->nombreProducto,$this->descontinuado,$this->productoId]); 
             } catch (Exception $e) {
                 return $e->getMessage();
             }
