@@ -7,15 +7,21 @@
 
 
     if(isset($_POST['guardar'])){
-        require_once('configFacturas.php');
-        $factura= new Factura();
-
-        $factura->setEmpleadoId(intval($_POST['empleadoId']));
-        $factura->setClienteId(intval($_POST['clienteId']));
-        $factura->setFecha($_POST['fecha']);
+        require_once('configProductos.php');
         
-        $factura->insertData();
-        echo"<script> alert('Los datos fueron guardados satisfactoriamente'); document.location='facturas.php'</script>";
+        $producto= new Producto();
+
+        $producto->setCategoriaId($_POST['categoriaId']);
+        $producto->setPrecioUnitario($_POST['precioUnitario']);
+        $producto->setStock($_POST['stock']);
+        $producto->setUnidadesPedidas($_POST['unidadesPedidas']);
+        $producto->setProveedorId($_POST['proveedorId']);
+        $producto->setNombreProducto($_POST['nombre']);
+        $producto->setDescontinuado($_POST['descontinuado']);
+        $producto->insertData();
+
+
+        echo"<script> document.location='proveedores.php'</script>";
 
     }
 
