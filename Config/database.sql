@@ -50,6 +50,7 @@ CREATE TABLE productos(
 );
 
 CREATE TABLE facturaDetalle(
+    facturaDetalleId INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     facturaId INT,
     productoId INT,
     cantidad INT,
@@ -57,5 +58,3 @@ CREATE TABLE facturaDetalle(
     FOREIGN KEY (facturaId) REFERENCES facturas(facturaId),
     FOREIGN KEY (productoId) REFERENCES productos(productoId)
 );
-
-

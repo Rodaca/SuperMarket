@@ -73,6 +73,10 @@
           <i class="bi bi-people"></i>
           <h3 style="margin: 0px;font-weight: 800;">Proveedores</h3>
         </a>
+        <a href="../FacturasDetalles/facturas.php" style="display: flex;gap:1px;">
+          <i class="bi bi-people"></i>
+          <h3 style="margin: 0px;font-weight: 800;">Facturas Detalles</h3>
+        </a>
 
 
       </div>
@@ -87,7 +91,7 @@
         <table class="table table-custom ">
           <thead>
             <tr>
-              <th scope="col">#</th>
+              <th scope="col">Numero de Factura</th>
               <th scope="col">NOMBRE</th>
               <th scope="col">DESCRIPCION</th>
               <th scope="col">IMAGEN</th>
