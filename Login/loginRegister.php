@@ -83,11 +83,11 @@
                         />
                     </div>
                     <div class="mb-3">
-                    <label for="campo" class="form-label">campo</label>
+                    <label for="password" class="form-label">Password</label>
                         <input 
                           type="password"
-                          id="campo"
-                          name="campo"
+                          id="password"
+                          name="password"
                           class="form-control"  
                         />
                     </div>
