@@ -9,6 +9,14 @@
     require_once('configCategorias.php');
     $data= new Categoria();
     $all= $data ->selectAll();
+
+    if(isset($_POST['logOut'])){
+      unset($_SESSION['id']);
+      unset($_SESSION['username']);
+      unset($_SESSION['rol']);
+      header('Location: ../Login/loginRegister.php');
+      exit();
+    }
 ?>
 
 
@@ -45,6 +53,9 @@
         <h3>Categorias</h3>
       </div>
       <div class="menus">
+        <form action="" method="post">
+          <input  class="btn btn-danger" type="submit" value="logOut" name="logOut">
+        </form>
         <a href="../Categorias/superMarket.php" style="display: flex;gap:2px;">
           <i class="bi bi-house-door"> </i>
           <h3 style="margin: 0px;">Home</h3>

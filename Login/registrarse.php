@@ -16,7 +16,13 @@ if(isset($_POST['registrarse'])){
     $users->setTipoUsuario('Trabajador');
 
     $users->insertData();
-    echo"<script>document.location='loginRegister.php'</script>";
+    
 
+    if ($users->checkUser($_POST['email'])) {
+        echo"<script>alert('El correo ya esta siendo usado.');document.location='loginRegister.php'</script>";
+    }else {
+        echo"<script>document.location='loginRegister.php'</script>";
+        $users->insertData();
+    }
 
 }

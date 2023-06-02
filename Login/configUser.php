@@ -24,7 +24,7 @@ class User extends Conexion{
         try {
             $stm= $this->dbCnx->prepare("SELECT * FROM users WHERE email ='$email'");
             $stm->execute();
-            if ($stm->fetchColum()) {
+            if ($stm->fetchColumn()) {
                 return true;
             }else{
                 return false;
